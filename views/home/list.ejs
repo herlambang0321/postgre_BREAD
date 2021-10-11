@@ -26,22 +26,51 @@
         <% }) %>
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation">
     <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item"
+            <% if(page <= i) { %>
+                class="disabled"
+            <% } %>>
+            <a class="page-link" href="/?page=<%= page <= 1 ? 1 : page - 1 %>" aria-label="Previous">
             <span aria-hidden="true">Previous</span>
             </a>
         </li>
         <% for (let i = 1; i <= pages; i++) { %>
-        <li class="page-item"><a class="page-link" href="/?page=<%= i %>"><%= i %></a></li>
+        <li class="page-item<%= page == i ? ' active' : '' %>"><a class="page-link" href="/?page=<%= i %>"><%= i %></a></li>
         <% } %>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+        <li class="page-item"
+            <% if(page > pages - 1) { %>
+                class="disabled"
+            <% } %>>
+            <a class="page-link" href="/?page=<%= page > pages - 1 ? parseInt(pages) : 1 + parseInt(page) %>" aria-label="Next">
             <span aria-hidden="true">Next</span>
             </a>
         </li>
     </ul>
 </nav>
+
+
+<!-- <nav>
+    <div class="text-center">
+        <ul class="pagination pagination-sm">
+            <li
+                    <% if(page <= 0) { %>
+                    class="disabled"
+                    <% } %>
+            ><a href="?page=<%= page <= 0 ? 0 : page - 1 %>">&laquo;</a></li>
+            <% for(var i = 0; i < pages; i++) { %>
+            <li
+                    <% if(page == i) { %>
+                    class="active"
+                    <% } %>
+            ><a href="?page=<%= i %>"><%= i + 1 %></a></li>
+            <% } %>
+            <li <% if(page > pages - 1) { %>class="disabled"
+                    <% } %>
+            ><a href="?page=<%= page > pages - 1 ? parseInt(pages) : 1 + parseInt(page) %>">&raquo;</a></li>
+        </ul>
+    </div> -->
+
 
 <%- include('../partials/footer') %>
