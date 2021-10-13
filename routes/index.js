@@ -4,7 +4,7 @@ var moment = require("moment");
 
 module.exports = function (db) {
   router.get("/", function (req, res, next) {
-    const { stringdata, booleandata } = req.query;
+    const { stringdata, integerdata, booleandata } = req.query;
 
     const url = req.url == '/' ? '/?page=1' : req.url;
     const page = req.query.page || 1;
@@ -15,6 +15,10 @@ module.exports = function (db) {
 
     if (stringdata) {
       params.push(`stringdata ilike '%${stringdata}%'`);
+    }
+
+    if (integerdata) {
+      params.push(`integerdata=${integerdata}`);
     }
 
     if (booleandata) {
@@ -31,6 +35,7 @@ module.exports = function (db) {
       if (err) {
         return res.send(err);
       }
+      
       const total = data.rows[0].total;
       const pages = Math.ceil(total / limit);
 
