@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<h1>Add Data</h1>
+
+<form action="/add" method="POST">
+    <div class="mb-3 row">
+        <label for="stringdata" class="col-sm-2 col-form-label">String</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="String" name="stringdata">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="integerdata" class="col-sm-2 col-form-label">Integer</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" placeholder="Integer" name="integerdata">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="floatdata" class="col-sm-2 col-form-label">Float</label>
+        <div class="col-sm-10">
+            <input type="number" step="0.01" class="form-control" placeholder="Float" name="floatdata">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="datedata" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" placeholder="end date" name="datedata">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="booleandata" class="col-sm-2 col-form-label">Boolean</label>
+        <div class="col-sm-10">
+            <select name="booleandata" class="form-control">
+                <option selected disabled value="">Choose the boolean ...</option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/" type="button" class="btn btn-warning">Cancel</a>
+</form>
+
+<%- include('../partials/header') %>

@@ -47,7 +47,7 @@ module.exports = function (db) {
       if (err) {
         return res.send(err);
       }
-      
+
       const total = data.rows[0].total;
       const pages = Math.ceil(total / limit);
 
@@ -56,16 +56,32 @@ module.exports = function (db) {
       if (params.length > 0) {
         sql += ` where ${params.join(' and ')}`
       }
-      
+
       sql += ` limit $1 offset $2`
 
       db.query(sql, [limit, offset], (err, data) => {
-          if (err) {
-            return res.send(err);
-          }
-          res.render("home/list", { data: data.rows, moment: moment, page, pages, url, query: req.query });
+        if (err) {
+          return res.send(err);
         }
+        res.render("home/list", { data: data.rows, moment: moment, page, pages, url, query: req.query });
+      }
       );
+    });
+  });
+
+  router.get("/add", function (req, res, next) {
+    db.query('select * from breaddata', (err, data) => {
+      if (err) throw err;
+      res.render("home/add", { data });
+    });
+  });
+
+  router.post("/add", function (req, res, next) {
+    const { stringdata, integerdata, floatdata, datedata, booleandata } = req.body;
+
+    db.query(`insert into breaddata (stringdata, integerdata, floatdata, datedata, booleandata) VALUES ('${stringdata}', ${integerdata}, ${floatdata}, '${datedata}', '${booleandata}') returning *`, (err) => {
+      if (err);
+      res.redirect("/");
     });
   });
 

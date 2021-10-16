@@ -61,6 +61,7 @@
             <th>Float</th>
             <th>Date</th>
             <th>Boolean</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -72,6 +73,9 @@
             <td><%= item.floatdata %></td>
             <td><%= moment(item.datedata).format('D MMMM YYYY') %></td>
             <td><%= item.booleandata %></td>
+            <td><button class="btn btn-success">edit</button>
+                <a href="" class="btn btn-danger">delete</a>
+            </td>
         </tr>
         <% }) %>
     </tbody>
@@ -99,5 +103,7 @@
         </li>
     </ul>
 </nav>
+
+<a href="/add" class="btn btn-primary" type="submit">Add</a>
 
 <%- include('../partials/footer') %>
