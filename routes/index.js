@@ -78,7 +78,6 @@ module.exports = function (db) {
 
   router.post("/add", function (req, res, next) {
     const { stringdata, integerdata, floatdata, datedata, booleandata } = req.body;
-
     db.query(`insert into breaddata (stringdata, integerdata, floatdata, datedata, booleandata) VALUES ('${stringdata}', ${integerdata}, ${floatdata}, '${datedata}', '${booleandata}') returning *`, (err) => {
       if (err);
       res.redirect("/");

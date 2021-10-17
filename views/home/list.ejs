@@ -7,31 +7,32 @@
 <form action="" method="GET">
     <input type="hidden" name="page" value="1">
     <div class="mb-3 row">
-        <label for="id" class="col-sm-2 col-form-label">ID</label>
+        <label for="id" class="col-sm-2 col-form-label">
+            <input class="checkbox" type="checkbox">ID</label>
         <div class="col-sm-10">
             <input type="number" class="form-control" placeholder="ID" name="id" value="<%= query.id %>">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="stringdata" class="col-sm-2 col-form-label">String</label>
+        <label for="stringdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">String</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="String" name="stringdata" value="<%= query.stringdata %>">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="integerdata" class="col-sm-2 col-form-label">Integer</label>
+        <label for="integerdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Integer</label>
         <div class="col-sm-10">
             <input type="number" class="form-control" placeholder="Integer" name="integerdata" value="<%= query.integerdata %>">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="floatdata" class="col-sm-2 col-form-label">Float</label>
+        <label for="floatdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Float</label>
         <div class="col-sm-10">
             <input type="number" step="0.01" class="form-control" placeholder="Float" name="floatdata" value="<%= query.floatdata %>">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="datedata" class="col-sm-2 col-form-label">Date</label>
+        <label for="datedata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Date</label>
         <div class="col-sm-3">
             <input type="date" class="form-control" placeholder="start date" name="datedata" value="<%= query.datedata %>">
             <h6>to</h6>
@@ -39,7 +40,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="booleandata" class="col-sm-2 col-form-label">Boolean</label>
+        <label for="booleandata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Boolean</label>
         <div class="col-sm-10">
             <select name="booleandata" class="form-control">
                 <option selected disabled value="">Choose the boolean ...</option>
