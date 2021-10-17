@@ -1,110 +1,140 @@
 <%- include('../partials/header') %>
 
-<h1>BREAD (Browse, Read, Edit, Add, Delete)</h1>
+    <h1>BREAD (Browse, Read, Edit, Add, Delete)</h1>
 
-<h3>Filters</h3>
+    <h3>Filters</h3>
 
-<form action="" method="GET">
-    <input type="hidden" name="page" value="1">
-    <div class="mb-3 row">
-        <label for="id" class="col-sm-2 col-form-label">
-            <input class="checkbox" type="checkbox">ID</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" placeholder="ID" name="id" value="<%= query.id %>">
+    <form action="" method="GET">
+        <input type="hidden" name="page" value="1">
+        <div class="mb-3 row">
+            <label for="id" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkid" <%=query.checkid ? 'checked' : '' %>>ID</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="ID" name="id" value="<%= query.id %>">
+            </div>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="stringdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">String</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="String" name="stringdata" value="<%= query.stringdata %>">
+        <div class="mb-3 row">
+            <label for="stringdata" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkstring" <%=query.checkstring ? 'checked' : ''
+                    %>>String</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="String" name="stringdata"
+                    value="<%= query.stringdata %>">
+            </div>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="integerdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Integer</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" placeholder="Integer" name="integerdata" value="<%= query.integerdata %>">
+        <div class="mb-3 row">
+            <label for="integerdata" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkinteger" <%=query.checkinteger ? 'checked' : ''
+                    %>>Integer</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="Integer" name="integerdata"
+                    value="<%= query.integerdata %>">
+            </div>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="floatdata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Float</label>
-        <div class="col-sm-10">
-            <input type="number" step="0.01" class="form-control" placeholder="Float" name="floatdata" value="<%= query.floatdata %>">
+        <div class="mb-3 row">
+            <label for="floatdata" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkfloat" <%=query.checkfloat ? 'checked' : ''
+                    %>>Float</label>
+            <div class="col-sm-10">
+                <input type="number" step="0.001" class="form-control" placeholder="Float" name="floatdata"
+                    value="<%= query.floatdata %>">
+            </div>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="datedata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Date</label>
-        <div class="col-sm-3">
-            <input type="date" class="form-control" placeholder="start date" name="datedata" value="<%= query.datedata %>">
-            <h6>to</h6>
-            <input type="date" class="form-control" placeholder="end date" name="end-data" value="<%= query.datedata %>">
+        <div class="mb-3 row">
+            <label for="datedata" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkdate" <%=query.checkdate ? 'checked' : ''
+                    %>>Date</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" placeholder="start date" name="datedata"
+                    value="<%= query.datedata %>">
+                <h6>to</h6>
+                <input type="date" class="form-control" placeholder="end date" name="end-data"
+                    value="<%= query.datedata %>">
+            </div>
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="booleandata" class="col-sm-2 col-form-label"><input class="checkbox" type="checkbox">Boolean</label>
-        <div class="col-sm-10">
-            <select name="booleandata" class="form-control">
-                <option selected disabled value="">Choose the boolean ...</option>
-                <option value="true"<%= query.booleandata == 'true' ? ' selected' : '' %>>true</option>
-                <option value="false"<%= query.booleandata == 'false' ? ' selected' : '' %>>false</option>
-            </select>
+        <div class="mb-3 row">
+            <label for="booleandata" class="col-sm-2 col-form-label">
+                <input class="checkbox" type="checkbox" name="checkboolean" <%=query.checkboolean ? 'checked' : ''
+                    %>>Boolean</label>
+            <div class="col-sm-10">
+                <select name="booleandata" class="form-control">
+                    <option selected disabled value="">Choose the boolean ...</option>
+                    <option value="true" <%=query.booleandata=='true' ? ' selected' : '' %>>true</option>
+                    <option value="false" <%=query.booleandata=='false' ? ' selected' : '' %>>false</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Search</button>
-    <a class="btn btn-warning" href="/">Reset</a>
-</form>
+        <button class="btn btn-primary" type="submit">Search</button>
+        <a class="btn btn-warning" href="/">Reset</a>
+    </form>
 
-<table class="table table-dark table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>String</th>
-            <th>Integer</th>
-            <th>Float</th>
-            <th>Date</th>
-            <th>Boolean</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% data.forEach(item => { %>
-        <tr>
-            <td><%= item.id %></td>
-            <td><%= item.stringdata %></td>
-            <td><%= item.integerdata %></td>
-            <td><%= item.floatdata %></td>
-            <td><%= moment(item.datedata).format('D MMMM YYYY') %></td>
-            <td><%= item.booleandata %></td>
-            <td><button class="btn btn-success">edit</button>
-                <a href="" class="btn btn-danger">delete</a>
-            </td>
-        </tr>
-        <% }) %>
-    </tbody>
-</table>
-<nav aria-label="Page navigation">
-    <ul class="pagination">
-        <li class="page-item"
-            <% if(page <= 1) { %>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>String</th>
+                <th>Integer</th>
+                <th>Float</th>
+                <th>Date</th>
+                <th>Boolean</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(item=> { %>
+                <tr>
+                    <td>
+                        <%= item.id %>
+                    </td>
+                    <td>
+                        <%= item.stringdata %>
+                    </td>
+                    <td>
+                        <%= item.integerdata %>
+                    </td>
+                    <td>
+                        <%= item.floatdata %>
+                    </td>
+                    <td>
+                        <%= moment(item.datedata).format('D MMMM YYYY') %>
+                    </td>
+                    <td>
+                        <%= item.booleandata %>
+                    </td>
+                    <td><button class="btn btn-success">edit</button>
+                        <a href="" class="btn btn-danger">delete</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" <% if(page <=1) { %>
                 class="disabled"
-            <% } %>>
-            <a class="page-link" href="/?page=<%= page <= 1 ? 1 : page - 1 %>" aria-label="Previous">
-            <span aria-hidden="true">Previous</span>
-            </a>
-        </li>
-        <% for (let i = 1; i <= pages; i++) { %>
-        <li class="page-item<%= page == i ? ' active' : '' %>"><a class="page-link" href="<%= url.replace(`page=${page}`, `page=${i}`) %>"><%= i %></a></li>
-        <% } %>
-        <li class="page-item"
-            <% if(page > pages - 1) { %>
-                class="disabled"
-            <% } %>>
-            <a class="page-link" href="/?page=<%= page > pages - 1 ? parseInt(pages) : 1 + parseInt(page) %>" aria-label="Next">
-            <span aria-hidden="true">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+                <% } %>>
+                    <a class="page-link" href="/?page=<%= page <= 1 ? 1 : page - 1 %>" aria-label="Previous">
+                        <span aria-hidden="true">Previous</span>
+                    </a>
+            </li>
+            <% for (let i=1; i <=pages; i++) { %>
+                <li class="page-item<%= page == i ? ' active' : '' %>"><a class="page-link"
+                        href="<%= url.replace(`page=${page}`, `page=${i}`) %>">
+                        <%= i %>
+                    </a></li>
+                <% } %>
+                    <li class="page-item" <% if(page> pages - 1) { %>
+                        class="disabled"
+                        <% } %>>
+                            <a class="page-link"
+                                href="/?page=<%= page > pages - 1 ? parseInt(pages) : 1 + parseInt(page) %>"
+                                aria-label="Next">
+                                <span aria-hidden="true">Next</span>
+                            </a>
+                    </li>
+        </ul>
+    </nav>
 
-<a href="/add" class="btn btn-primary" type="submit">Add</a>
+    <a href="/add" class="btn btn-primary" type="submit">Add</a>
 
-<%- include('../partials/footer') %>
+    <%- include('../partials/footer') %>

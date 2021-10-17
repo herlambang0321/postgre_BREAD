@@ -4,7 +4,7 @@ var moment = require("moment");
 
 module.exports = function (db) {
   router.get("/", function (req, res, next) {
-    const { id, stringdata, integerdata, floatdata, datedata, booleandata } = req.query;
+    const { id, stringdata, integerdata, floatdata, datedata, booleandata, checkid, checkstring, checkinteger, checkfloat, checkdate, checkboolean } = req.query;
 
     const url = req.url == '/' ? '/?page=1' : req.url;
     const page = req.query.page || 1;
@@ -13,27 +13,27 @@ module.exports = function (db) {
 
     let params = [];
 
-    if (id) {
+    if (id && checkid) {
       params.push(`id=${id}`);
     }
 
-    if (stringdata) {
+    if (stringdata && checkstring) {
       params.push(`stringdata ilike '%${stringdata}%'`);
     }
 
-    if (integerdata) {
+    if (integerdata && checkinteger) {
       params.push(`integerdata=${integerdata}`);
     }
 
-    if (floatdata) {
+    if (floatdata && checkfloat) {
       params.push(`floatdata=${floatdata}`);
     }
 
-    if (datedata) {
+    if (datedata && checkdate) {
       params.push(`datedata='${datedata}'`);
     }
 
-    if (booleandata) {
+    if (booleandata && checkboolean) {
       params.push(`booleandata=${booleandata}`);
     }
 
