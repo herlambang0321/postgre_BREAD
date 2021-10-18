@@ -51,7 +51,7 @@ module.exports = function (db) {
       const total = data.rows[0].total;
       const pages = Math.ceil(total / limit);
 
-      sql = `select * from breaddata`;
+      sql = `select * from breaddata ORDER BY id`;
 
       if (params.length > 0) {
         sql += ` where ${params.join(' and ')}`
