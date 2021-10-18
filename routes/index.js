@@ -78,7 +78,24 @@ module.exports = function (db) {
 
   router.post("/add", function (req, res, next) {
     const { stringdata, integerdata, floatdata, datedata, booleandata } = req.body;
-    db.query(`insert into breaddata (stringdata, integerdata, floatdata, datedata, booleandata) VALUES ('${stringdata}', ${integerdata}, ${floatdata}, '${datedata}', '${booleandata}') returning *`, (err) => {
+    db.query(`insert into breaddata (stringdata, integerdata, floatdata, datedata, booleandata) VALUES ('${stringdata}', ${integerdata}, ${floatdata}, '${datedata}', ${booleandata}) returning *`, (err) => {
+      if (err);
+      res.redirect("/");
+    });
+  });
+
+  router.get("/edit/:id", function (req, res, next) {
+    const id = req.params.id;
+    db.query(`select * from breaddata where id = ${id}`, (err, data) => {
+      if (err) throw err;
+      res.render("home/edit", { item: data.rows[0], moment: moment });
+    });
+  });
+
+  router.post("/edit/:id", function (req, res, next) {
+    const id = req.params.id;
+    const { stringdata, integerdata, floatdata, datedata, booleandata } = req.body;
+    db.query(`update breaddata set stringdata='${stringdata}', integerdata=${integerdata}, floatdata=${floatdata}, datedata='${datedata}', booleandata=${booleandata} where id=${id} returning *`, (err) => {
       if (err);
       res.redirect("/");
     });

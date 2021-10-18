@@ -1,5 +1,60 @@
 <%- include('../partials/header') %>
 
-<h1>Edit Data</h1>
+    <div class="card">
+        <div class="card-header">
+            <h1>Edit Data</h1>
+        </div>
+        <div class="card-body">
+            <form action="" method="POST">
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" disabled id="id" placeholder="ID" name="id"
+                            value="<%= item.id %>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="stringdata" class="col-sm-2 col-form-label">String</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="stringdata" placeholder="String" name="stringdata"
+                            value="<%= item.stringdata %>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="integerdata" class="col-sm-2 col-form-label">Integer</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="integerdata" placeholder="Integer"
+                            name="integerdata" value="<%= item.integerdata %>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="floatdata" class="col-sm-2 col-form-label">Float</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.001" class="form-control" id="floatdata" placeholder="Float"
+                            name="floatdata" value="<%= item.floatdata %>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="datedata" class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="datedata" placeholder="start date" name="datedata"
+                            value="<%= moment(item.datedata).format('YYYY-MM-DD') %>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="booleandata" class="col-sm-2 col-form-label">Boolean</label>
+                    <div class="col-sm-10">
+                        <select name="booleandata" class="form-control">
+                            <option selected disabled>Choose the boolean ...</option>
+                            <option value="true" <%=item.booleandata==true ? ' selected' : '' %>>true</option>
+                            <option value="false" <%=item.booleandata==false ? ' selected' : '' %>>false</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="/" type="button" class="btn btn-warning">Cancel</a>
+            </form>
+        </div>
+    </div>
 
-<%- include('../partials/header') %>
+    <%- include('../partials/header') %>
