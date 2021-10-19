@@ -66,7 +66,6 @@ module.exports = function (db) {
           return res.send(err);
         }
         res.render("home/list", { data: data.rows, moment: moment, page, pages, url, query: req.query });
-        console.log(url, req.query)
       }
       );
     });
@@ -99,6 +98,15 @@ module.exports = function (db) {
     const id = req.params.id;
     const { stringdata, integerdata, floatdata, datedata, booleandata } = req.body;
     db.query(`update breaddata set stringdata='${stringdata}', integerdata=${integerdata}, floatdata=${floatdata}, datedata='${datedata}', booleandata=${booleandata} where id=${id} returning *`, (err) => {
+      if (err);
+      res.redirect("/");
+    });
+  });
+
+  router.get("/delete/:id", function (req, res, next) {
+    const id = req.params.id;
+    const sql = `delete from breaddata where id = '${id}'`;
+    db.query(sql, (err) => {
       if (err);
       res.redirect("/");
     });
