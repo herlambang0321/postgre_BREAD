@@ -1,3 +1,4 @@
+const { query } = require("express");
 var express = require("express");
 var router = express.Router();
 var moment = require("moment");
@@ -54,7 +55,8 @@ module.exports = function (db) {
       sql = `select * from breaddata order by id`;
 
       if (params.length > 0) {
-        sql += ` where ${params.join(' and ')}`
+        sql = `select * from breaddata`
+        sql += ` where ${params.join(' and ')} order by id`
       }
 
       sql += ` limit $1 offset $2`
@@ -64,6 +66,7 @@ module.exports = function (db) {
           return res.send(err);
         }
         res.render("home/list", { data: data.rows, moment: moment, page, pages, url, query: req.query });
+        console.log(url, req.query)
       }
       );
     });

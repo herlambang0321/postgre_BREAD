@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.btn btn-primary, btn btn-warning {
+  margin: 10px;
+}
