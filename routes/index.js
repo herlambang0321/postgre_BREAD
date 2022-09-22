@@ -5,7 +5,7 @@ var moment = require("moment");
 
 module.exports = function (db) {
   router.get("/", function (req, res, next) {
-    const { id, stringdata, integerdata, floatdata, datedata, booleandata, checkid, checkstring, checkinteger, checkfloat, checkdate, checkboolean } = req.query;
+    const { id, stringdata, integerdata, floatdata, startdate, enddate, booleandata, checkid, checkstring, checkinteger, checkfloat, checkdate, checkboolean } = req.query;
 
     const url = req.url == '/' ? '/?page=1' : req.url;
     const page = req.query.page || 1;
@@ -30,8 +30,8 @@ module.exports = function (db) {
       params.push(`floatdata=${floatdata}`);
     }
 
-    if (datedata && checkdate) {
-      params.push(`datedata='${datedata}'`);
+    if (startdate && enddate && checkdate) {
+      params.push(`datedata between '${startdate}' and '${enddate}'`)
     }
 
     if (booleandata && checkboolean) {
@@ -65,16 +65,24 @@ module.exports = function (db) {
         if (err) {
           return res.send(err);
         }
-        res.render("home/list", { data: data.rows, moment: moment, page, pages, url, query: req.query });
-      }
-      );
+        res.render("home/list", {
+          data: data.rows,
+          moment: moment,
+          page,
+          pages,
+          url,
+          query: req.query
+        });
+      });
     });
   });
 
   router.get("/add", function (req, res, next) {
     db.query('select * from breaddata', (err, data) => {
       if (err) throw err;
-      res.render("home/add", { data });
+      res.render("home/add", {
+        data
+      });
     });
   });
 
@@ -90,7 +98,10 @@ module.exports = function (db) {
     const id = req.params.id;
     db.query(`select * from breaddata where id = ${id}`, (err, data) => {
       if (err) throw err;
-      res.render("home/edit", { item: data.rows[0], moment: moment });
+      res.render("home/edit", {
+        item: data.rows[0],
+        moment: moment
+      });
     });
   });
 

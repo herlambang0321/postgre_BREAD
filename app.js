@@ -6,10 +6,10 @@ var logger = require('morgan');
 
 const { Pool } = require('pg')
 const pool = new Pool({
-  user: 'hergun',
+  user: 'postgres',
   host: 'localhost',
   database: 'datadb',
-  password: 'hergun0321',
+  password: '12345',
   port: 5432,
 })
 
